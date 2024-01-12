@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Le modèle relationnel &#8212; NSI</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5bbc778b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script src="../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../_static/translations.js?v=d99ca74e"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/cours';</script>
+    <script src="../_static/custom.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Exercices sur le modèle relationnel" href="exercice.html" />
+    <link rel="prev" title="Les données en table" href="activite.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Passer au contenu principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Haut de page
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">NSI</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Recherche</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="activite.html">Les données en table</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Le modèle relationnel</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="exercice.html">Exercices sur le modèle relationnel</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="simple">
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/cours.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="clair/sombre" aria-label="clair/sombre" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Le modèle relationnel</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-donnees-en-table">Les données en table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Le modèle relationnel</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="le-modele-relationnel">
+<h1>Le modèle relationnel<a class="headerlink" href="#le-modele-relationnel" title="Link to this heading">#</a></h1>
+<section id="les-donnees-en-table">
+<h2>Les données en table<a class="headerlink" href="#les-donnees-en-table" title="Link to this heading">#</a></h2>
+<p>Une table est un tableau comprenant des données réparties sur plusieurs colonnes et lignes.</p>
+<ul class="simple">
+<li><p>Chaque colonne est désignée par un nom appelé attribut.</p></li>
+<li><p>Chaque ligne est un enregistrement ou tuple de la table possédant des valeurs.</p></li>
+</ul>
+<p class="rubric" id="exemple">Exemple</p>
+<p>Dans l’activité, nous avons traiter les données d’une table rassemblant des informations sur des romans de science-fiction.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Titre</p></th>
+<th class="head"><p>nom_auteur</p></th>
+<th class="head"><p>prénom_auteur</p></th>
+<th class="head"><p>naissance_auteur</p></th>
+<th class="head"><p>langue</p></th>
+<th class="head"><p>année_publication</p></th>
+<th class="head"><p>genre</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1984</p></td>
+<td><p>Orwell</p></td>
+<td><p>George</p></td>
+<td><p>1903</p></td>
+<td><p>anglais</p></td>
+<td><p>1949</p></td>
+<td><p>[“totalitarisme”, “science-fiction”, “anticipation”, “dystopie”]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dune</p></td>
+<td><p>Herbert</p></td>
+<td><p>Frank</p></td>
+<td><p>1920</p></td>
+<td><p>anglais</p></td>
+<td><p>1965</p></td>
+<td><p>[“science-fiction”, “anticipation”]</p></td>
+</tr>
+<tr class="row-even"><td><p>Fondation</p></td>
+<td><p>Asimov</p></td>
+<td><p>Isaac</p></td>
+<td><p>1920</p></td>
+<td><p>anglais</p></td>
+<td><p>1951</p></td>
+<td><p>[“science-fiction”, “économie”]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Le meilleur des mondes</p></td>
+<td><p>Huxley</p></td>
+<td><p>Aldous</p></td>
+<td><p>1894</p></td>
+<td><p>anglais</p></td>
+<td><p>1931</p></td>
+<td><p>[“totalitarisme”, “science-fiction”, “dystopie”]</p></td>
+</tr>
+<tr class="row-even"><td><p>Farenheit 451</p></td>
+<td><p>Bradbury</p></td>
+<td><p>Ray</p></td>
+<td><p>1920</p></td>
+<td><p>anglais</p></td>
+<td><p>1953</p></td>
+<td><p>[“science-fiction”, “dystopie”]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ubik</p></td>
+<td><p>K Dick</p></td>
+<td><p>Philip</p></td>
+<td><p>1928</p></td>
+<td><p>anglais</p></td>
+<td><p>1969</p></td>
+<td><p>[“science-fiction”, “anticipation”]</p></td>
+</tr>
+<tr class="row-even"><td><p>Chroniques martiennes</p></td>
+<td><p>Bradbury</p></td>
+<td><p>Ray</p></td>
+<td><p>1920</p></td>
+<td><p>anglais</p></td>
+<td><p>1950</p></td>
+<td><p>[“science-fiction”, “anticipation”]</p></td>
+</tr>
+<tr class="row-odd"><td><p>La nuit des temps</p></td>
+<td><p>Barjavel</p></td>
+<td><p>René</p></td>
+<td><p>1911</p></td>
+<td><p>français</p></td>
+<td><p>1968</p></td>
+<td><p>[“science-fiction”, “tragédie”]</p></td>
+</tr>
+<tr class="row-even"><td><p>Blade runner</p></td>
+<td><p>K Dick</p></td>
+<td><p>Philip</p></td>
+<td><p>1928</p></td>
+<td><p>anglais</p></td>
+<td><p>1968</p></td>
+<td><p>[“intelligence artificielle”, “science-fiction”]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Les robots</p></td>
+<td><p>Asimov</p></td>
+<td><p>Isaac</p></td>
+<td><p>1920</p></td>
+<td><p>anglais</p></td>
+<td><p>1950</p></td>
+<td><p>[“science-fiction”, “intelligence artificielle”]</p></td>
+</tr>
+<tr class="row-even"><td><p>La planète des singes</p></td>
+<td><p>Boulle</p></td>
+<td><p>Pierre</p></td>
+<td><p>1912</p></td>
+<td><p>français</p></td>
+<td><p>1963</p></td>
+<td><p>[“science-fiction”, “dystopie”]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ravage</p></td>
+<td><p>Barjavel</p></td>
+<td><p>René</p></td>
+<td><p>1911</p></td>
+<td><p>français</p></td>
+<td><p>1943</p></td>
+<td><p>[“dystopie”, “uchronie”]</p></td>
+</tr>
+<tr class="row-even"><td><p>Le monde des A</p></td>
+<td><p>Van Vogt</p></td>
+<td><p>Alfred Elton</p></td>
+<td><p>1912</p></td>
+<td><p>anglais</p></td>
+<td><p>1945</p></td>
+<td><p>[“science-fiction”, “intelligence artificielle”]</p></td>
+</tr>
+<tr class="row-odd"><td><p>La fin de l’éternité</p></td>
+<td><p>Asimov</p></td>
+<td><p>Isaac</p></td>
+<td><p>1920</p></td>
+<td><p>anglais</p></td>
+<td><p>1955</p></td>
+<td><p>[“science-fiction”, “voyage dans le temps”]</p></td>
+</tr>
+<tr class="row-even"><td><p>De la terre à la lune</p></td>
+<td><p>Verne</p></td>
+<td><p>Jules</p></td>
+<td><p>1828</p></td>
+<td><p>français</p></td>
+<td><p>1865</p></td>
+<td><p>[“science-fiction”, “aventure”]</p></td>
+</tr>
+<tr class="row-odd"><td><p>La machine à explorer le temps</p></td>
+<td><p>Wells</p></td>
+<td><p>Herbert George</p></td>
+<td><p>1866</p></td>
+<td><p>anglais</p></td>
+<td><p>1895</p></td>
+<td><p>[“science-fiction”, “voyage dans le temps”]</p></td>
+</tr>
+</tbody>
+</table>
+<p>Les attributs de cette table sont le <em>titre</em> du roman, le <em>nom</em>, le <em>prénom</em> et l”<em>année de naissance</em> de son auteur, la <em>date de publication</em>, la <em>langue</em> d’écriture et le <em>genre</em> du roman.</p>
+<p class="rubric" id="inconvenients-lies-au-modele">Inconvénients liés au modèle</p>
+<p>Dans ce type de modèle, plusieurs inconvénients peuvent se poser:</p>
+<ul class="simple">
+<li><p>La table contient des informations redondantes parfois même en doublon si aucun traitement préalable n’est effectué. Par exemple, l’auteur Bradbury apparait 2 fois !</p></li>
+<li><p>Si on souhaite extraire les romans écrits en langue française, il est nécessaire de parcourir toute la table pour les obtenir. Le traitement devient peu efficace.</p></li>
+<li><p>La saisie d’un enregistrement supplémentaire peut contenir des données déjà existantes et peuvent amener des différences comme l’orthographe d’un nom ce qui impliquera des résultats de recherche incomplets.</p></li>
+<li><p>une table comme celle-ci, mise à dispositon sur un serveur sera accessible en lecture. Mais sa modification par plusieurs personnes peut poser des problèmes d’accès concurents et rendre la ressource indisponible.</p></li>
+</ul>
+<p>D’autres problèmes liés au modèle existent, la liste n’est pas exhaustive. Cela nous conduit à réfléchir à un modèle qui évite ces inconvénients. Un modèle relationnel peut corriger la plupart de ces inconvénients.</p>
+</section>
+<section id="id1">
+<h2>Le modèle relationnel<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Le modèle relationnel repose sur la décomposition d’une table en plusieurs tables, plus petites, évitant la redondance des données. Ces différentes tables sont alors appelées <strong>relations</strong>.</p>
+<p>Une <strong>relation</strong> regroupe un ensemble de données homogènes et se présente sous forme de tableau dont les données sont classées en colonnes.</p>
+<ul class="simple">
+<li><p>Chaque colonne d’une relation est appelée <strong>attribut</strong> et caractérise une propriété;</p></li>
+<li><p>Chaque ligne d’une relation est appelée un <strong>tuple</strong> ou un <strong>enregistrement</strong>.</p></li>
+</ul>
+<p>Le modèle relationnel suit certaines règles qui assurent le bon fonctionnement de celui-ci. Ses règles sont appelées des <strong>contraintes d’intégrité</strong>:</p>
+<ul class="simple">
+<li><p>les attributs sont uniques dans une même relation.</p></li>
+<li><p>les enregistrements d’une relation sont uniques, pas de doublon.</p></li>
+<li><p>les valeurs d’un attribut sont du même <strong>type</strong> pour tous les enregistrements.</p></li>
+<li><p>des valeurs limites peuvent être définies pour les attributs, elles constituent le <strong>domaine</strong> de l’attribut.</p></li>
+<li><p>les valeurs des enregistrements appartiennent nécessairement aux domaines définis dans la relation.</p></li>
+</ul>
+<div class="admonition-exemple admonition">
+<p class="admonition-title">Exemple</p>
+<p>La relation livre donnée ci-dessous contient 4 attributs et 8 tuples (enregistrements).</p>
+<a class="reference internal image-reference" href="../_images/relation1.png"><img alt="relation1.png" class="align-center" src="../_images/relation1.png" style="width: 560px;" /></a>
+<ul class="simple">
+<li><p>le domaine de valeurs de l’attribut <strong>titre</strong> est une <strong>chaîne de caractères</strong> dont la longueur peut être limitée à 256 caractères;</p></li>
+<li><p>le domaine de valeurs de l’attribut <strong>ann_pub</strong> est un <strong>nombre entier positif</strong> correspondant à une année.</p></li>
+</ul>
+</div>
+<p class="rubric" id="base-de-donnees">Base de données</p>
+<p>Une <strong>base de données</strong> est constituée de <strong>plusieurs relations</strong> reliées entre elles.</p>
+<p>Un enregistrement de la table initiale se trouve dispersé sur plusieurs relations. Pour reformer cet enregistrement avec nos différentes relations, cela implique des liaisons entre les différentes relations.</p>
+<p>Pour ce faire, on définit dans les différentes relations des <strong>clés primaires</strong> et des <strong>clés étrangères</strong>.</p>
+<ul class="simple">
+<li><p>une <strong>clé primaire</strong> est associée à chaque tuple (enregistrement) et assure son unicité. Cette clé peut être un attribut de la relation dont on sait que la valeur est unique ou alors un attribut spécialement dédié à cette tâche.</p></li>
+<li><p>une <strong>clé étrangère</strong> d’une relation prend la valeur d’une clé primaire d’une autre relation. Cette clé assure alors le lien entre les deux relations.</p></li>
+</ul>
+<p class="rubric" id="schema-relationnel">Schéma relationnel</p>
+<p>Un <strong>schéma relationnel</strong> est une description des différentes relations de la base de données comprenant:</p>
+<ul class="simple">
+<li><p>le nom de chaque relation;</p></li>
+<li><p>les attributs de chaque relation avec leurs domaines de valeurs;</p></li>
+<li><p>la mise en évidence des clés primaires et étrangères</p></li>
+<li><p>les liens entre les différentes relations</p></li>
+</ul>
+<p>Une relation dans un schéma relationnel peut se présenter sous la forme d’une description ou bien d’un diagramme:</p>
+<ul>
+<li><p>Par une description : <strong>Relation 1</strong> (<em>attribut_1 Domaine_1</em>, <em>attribut_2 Domaine_2</em>,… , <em>attribut_n Domaine_n</em>)</p></li>
+<li><p>Par un diagramme :</p>
+<a class="reference internal image-reference" href="../_images/diagramme_relation.png"><img alt="diagramme_relation.png" class="align-center" src="../_images/diagramme_relation.png" style="width: 160px;" /></a>
+</li>
+</ul>
+<p class="rubric" id="id2">Exemple</p>
+<p>Le modèle relationnel associé à la table contenant les différents romans de science-fiction est le suivant:</p>
+<a class="reference internal image-reference" href="../_images/schema_relationnel_romans.png"><img alt="schema_relationnel_romans.png" class="align-center" src="../_images/schema_relationnel_romans.png" style="width: 560px;" /></a>
+<p>Sur le schéma relationnel, on distingue:</p>
+<ul class="simple">
+<li><p>les 5 relations de notre modèle, base de données;</p></li>
+<li><p>les attributs et leurs domaines pour chaque relation;</p></li>
+<li><p>les clés primaires de chaque relation encadrées en rouge;</p></li>
+<li><p>les clés étrangères soulignées en bleu</p></li>
+<li><p>les liaisons entre les relations grâce aux clefs étrangères.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="activite.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Les données en table</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="exercice.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Exercices sur le modèle relationnel</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-donnees-en-table">Les données en table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Le modèle relationnel</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Yannick Chistel
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023,Yannick Chistel.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

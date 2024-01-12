@@ -1,0 +1,724 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Exercices sur le modèle relationnel &#8212; NSI</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5bbc778b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script src="../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../_static/translations.js?v=d99ca74e"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/exercice';</script>
+    <script src="../_static/custom.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="prev" title="Le modèle relationnel" href="cours.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Passer au contenu principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Haut de page
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">NSI</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Recherche</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="activite.html">Les données en table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours.html">Le modèle relationnel</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Exercices sur le modèle relationnel</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="simple">
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/exercice.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="clair/sombre" aria-label="clair/sombre" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exercices sur le modèle relationnel</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice">Exercice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-1">Exercice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-2">Exercice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-3">Exercice</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="exercices-sur-le-modele-relationnel">
+<h1>Exercices sur le modèle relationnel<a class="headerlink" href="#exercices-sur-le-modele-relationnel" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="exercice">
+<h2>Exercice<a class="headerlink" href="#exercice" title="Link to this heading">#</a></h2>
+<p>On considère dans cet exercice une gestion simplifiée des emprunts des ouvrages d’un CDI. La base de données utilisée
+est constituée de trois relations (ou tables) nommées Eleves, Livres et Emprunts selon le schéma relationnel suivant:</p>
+<a class="b-8 reference internal image-reference" href="../_images/schema_relationnel_ex1.png"><img alt="image" class="b-8 align-center" src="../_images/schema_relationnel_ex1.png" style="width: 450px;" /></a>
+<p>Dans ce schéma relationnel, un attribut souligné indique qu’il s’agit d’une clef primaire. Le symbole # devant un
+attribut indique qu’il s’agit d’une clef étrangère et la flèche associée indique l’attribut référencé.</p>
+<ol class="arabic">
+<li><p>Donner les clefs primaires de chaque relation.</p></li>
+<li><p>Quelles sont les clefs étrangères de cette base de données. Que référencent-elles ?</p></li>
+<li><p>Dans la relation élèves, on souhaite insérer les valeurs suivantes:</p>
+<ul class="simple">
+<li><p>(128, ’Dupont’, ’Jean’, ’TNSI’)</p></li>
+<li><p>(200, ’Dupont’, ’Jean’, ’TNSI’)</p></li>
+<li><p>(128, ’Dubois’, ’Jean’, ’TNSI’)</p></li>
+</ul>
+<p>Cette insertion génère-t-elle une erreur ? Expliquer.</p>
+</li>
+<li><p>Dans la définition de la relation Emprunts, qu’est-ce qui assure qu’on ne peut pas enregistre un emprunt pour un
+élève qui n’a pas encore été inscrit dans la relation Eleves?</p></li>
+</ol>
+</section>
+<section id="exercice-1">
+<span id="id1"></span><h2>Exercice<a class="headerlink" href="#exercice-1" title="Link to this heading">#</a></h2>
+<p>On considère la table de données Films suivante :</p>
+<div class="center docutils container">
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Titre</p></th>
+<th class="head"><p>Année</p></th>
+<th class="head"><p>Réalisateur</p></th>
+<th class="head"><p>Note</p></th>
+<th class="head"><p>NbAvis</p></th>
+<th class="head"><p>Durée</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Apocalypse Now</p></td>
+<td><p>1979</p></td>
+<td><p>Francis Ford Coppola</p></td>
+<td><p>8,4</p></td>
+<td><p>578150</p></td>
+<td><p>2h27</p></td>
+<td><p>Drama, Mystery, War</p></td>
+</tr>
+<tr class="row-odd"><td><p>Full Metal Jacket</p></td>
+<td><p>1987</p></td>
+<td><p>Stanley Kubrick</p></td>
+<td><p>8,3</p></td>
+<td><p>644089</p></td>
+<td><p>1h56</p></td>
+<td><p>Drama, War</p></td>
+</tr>
+<tr class="row-even"><td><p>Scarface</p></td>
+<td><p>1983</p></td>
+<td><p>Brian De Palma</p></td>
+<td><p>8,3</p></td>
+<td><p>704025</p></td>
+<td><p>170 min</p></td>
+<td><p>Crime, Drama</p></td>
+</tr>
+<tr class="row-odd"><td><p>Orange mécanique</p></td>
+<td><p>1971</p></td>
+<td><p>Stanley Kubrick</p></td>
+<td><p>8,3</p></td>
+<td><p>725846</p></td>
+<td><p>136’</p></td>
+<td><p>Crime, Drama, Sci-Fi</p></td>
+</tr>
+<tr class="row-even"><td><p>2001, l’odyssée de l’espace</p></td>
+<td><p>1968</p></td>
+<td><p>Stanley Kubrick</p></td>
+<td><p>8,3</p></td>
+<td><p>574171</p></td>
+<td><p>2h29</p></td>
+<td><p>Adventure, Science fiction</p></td>
+</tr>
+<tr class="row-odd"><td><p>Taxi Driver</p></td>
+<td><p>1976</p></td>
+<td><p>Martin Scorsese</p></td>
+<td><p>8,3</p></td>
+<td><p>685042</p></td>
+<td><p>1h54</p></td>
+<td><p>Crime, Drama</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flushright docutils container">
+<p><em>source https://www.imdb.com</em></p>
+</div>
+<ol class="arabic simple">
+<li><p>Proposer un modèle relationnel pour ces données.</p></li>
+<li><p>Donner le contenu de chacune des tables.</p></li>
+</ol>
+</section>
+<section id="exercice-2">
+<span id="id2"></span><h2>Exercice<a class="headerlink" href="#exercice-2" title="Link to this heading">#</a></h2>
+<p>On donne les extraits de trois relations d’une base de données:</p>
+<ul>
+<li><p>Relation <strong>client</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>IdCt</p></th>
+<th class="head"><p>Nom</p></th>
+<th class="head"><p>Adresse</p></th>
+<th class="head"><p>Mail</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Jean Bon</p></td>
+<td><p>2 rue Jean Mermoz - Caen</p></td>
+<td><p><a class="reference external" href="mailto:jean&#46;bon&#37;&#52;&#48;free&#46;fr">jean<span>&#46;</span>bon<span>&#64;</span>free<span>&#46;</span>fr</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Alain Térieur</p></td>
+<td><p>3 rue Paul Eluard - Hérouville</p></td>
+<td><p><a class="reference external" href="mailto:alain&#46;terieur4&#37;&#52;&#48;hotmail&#46;com">alain<span>&#46;</span>terieur4<span>&#64;</span>hotmail<span>&#46;</span>com</a></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Thérèse Etroit</p></td>
+<td><p>16 rue de la porte - Mondeville</p></td>
+<td><p><a class="reference external" href="mailto:therese&#46;etroit&#37;&#52;&#48;orange&#46;fr">therese<span>&#46;</span>etroit<span>&#64;</span>orange<span>&#46;</span>fr</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Gilles Héjone</p></td>
+<td><p>1 place de la bastille - Bénouville</p></td>
+<td><p><a class="reference external" href="mailto:gilledu14&#37;&#52;&#48;sfr&#46;fr">gilledu14<span>&#64;</span>sfr<span>&#46;</span>fr</a></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Hélène de Troie</p></td>
+<td><p>2 rue Néper - Caen</p></td>
+<td><p><a class="reference external" href="mailto:ln23&#37;&#52;&#48;laposte&#46;net">ln23<span>&#64;</span>laposte<span>&#46;</span>net</a></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>Relation <strong>produit</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>IdProduit</p></th>
+<th class="head"><p>CodeProduit</p></th>
+<th class="head"><p>NomProduit</p></th>
+<th class="head"><p>Prix</p></th>
+<th class="head"><p>Stock</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>12x24F</p></td>
+<td><p>gel hydroalcoolique 100ml</p></td>
+<td><p>3,21</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>21s53R</p></td>
+<td><p>masque FFP2 x100</p></td>
+<td><p>10,57</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>97D74S</p></td>
+<td><p>visière de protection</p></td>
+<td><p>0.50</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>10F36A</p></td>
+<td><p>désinfectant industriel 10L</p></td>
+<td><p>53,25</p></td>
+<td><p>5</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>Relation <strong>commande</strong> pour un jour J :</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>IdCmd</p></th>
+<th class="head"><p>IdClient</p></th>
+<th class="head"><p>IdProduit</p></th>
+<th class="head"><p>Quantité</p></th>
+<th class="head"><p>Expedié</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>4</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>1</p></td>
+<td><p>4</p></td>
+<td><p>3</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ol class="arabic simple">
+<li><p>Donner le schéma relationnel de cette base de données.</p></li>
+<li><p>Dans la relation <strong>commande</strong> quelle est la clef primaire ? Quelles
+sont les clefs étrangères ?</p></li>
+<li><p>A combien s’élève le montant total des commandes de la journée J ?</p></li>
+<li><p>Quels sont les noms des clients pour lesquels la commande a été
+expédiée ?</p></li>
+</ol>
+</section>
+<section id="exercice-3">
+<span id="id3"></span><h2>Exercice<a class="headerlink" href="#exercice-3" title="Link to this heading">#</a></h2>
+<p>Une ville souhaite gérer son parc de vélos en location partagée.
+L’ensemble de la flotte de vélos est stocké dans une table de données
+représentée en langage Python par un dictionnaire contenant des
+associations de type id_velo : dict_velo où id_velo est un nombre entier
+compris entre 1 et 199 qui correspond à l’identifiant unique du vélo et
+dict_velo est un dictionnaire dont les clés sont : « type », « etat »,
+« station ».</p>
+<p>Les valeurs associées aux clés « type », « etat », « station » de dict_velo
+sont de type chaînes de caractères ou nombre entier :</p>
+<ul class="simple">
+<li><p>« type » : chaîne de caractères qui peut prendre la valeur « electrique »
+ou « classique ».</p></li>
+<li><p>« état » : nombre entier qui peut prendre la valeur 1 si le vélo est
+disponible, 0 si le vélo est en déplacement ou -1 si le vélo est en
+panne.</p></li>
+<li><p>« station » : chaînes de caractères qui identifie la station où est
+garé le vélo.</p></li>
+</ul>
+<p>Dans le cas où le vélo est en déplacement ou en panne, « station »
+correspond à celle où il a été dernièrement stationné.</p>
+<p>Voici un extrait de la table de données :</p>
+<a class="reference internal image-reference" href="../_images/exercice_bac1.png"><img alt="image" class="align-center" src="../_images/exercice_bac1.png" style="width: 520px;" /></a>
+<p>Toutes les questions de cet exercice se réfèrent à l’extrait de la table flotte fourni ci-dessus.</p>
+<ol class="arabic">
+<li><ol class="loweralpha simple">
+<li><p>Que renvoie l’instruction flotte[26] ?</p></li>
+<li><p>Que renvoie l’instruction flotte[80][« etat »] ?</p></li>
+<li><p>Que renvoie l’instruction flotte[99][« etat »]</p></li>
+</ol>
+</li>
+<li><p>Voici le script d’une fonction:</p>
+<a class="reference internal image-reference" href="../_images/exercice_bac2.png"><img alt="image" class="align-center" src="../_images/exercice_bac2.png" style="width: 450px;" /></a>
+<ol class="loweralpha simple">
+<li><p>Quelles sont les valeurs possibles de la variable choix?</p></li>
+<li><p>Expliquer ce que renvoie la fonction lorsque l’on choisit comme paramètre l’une des valeurs possibles de la
+variable choix.</p></li>
+</ol>
+</li>
+<li><ol class="loweralpha simple">
+<li><p>Écrire un script en langage Python qui affiche les identifiants (id_velo) de tous les vélos disponibles à la
+station « Citadelle ».</p></li>
+<li><p>Écrire un script en langage Python qui permet d’afficher l’identifiant (id_velo) et la station de tous les vélos
+électriques qui ne sont pas en panne.</p></li>
+</ol>
+</li>
+<li><p>On dispose d’une table de données des positions GPS de toutes les stations, dont un extrait est donné ci-dessous.
+Cette table est stockée sous la forme d’un dictionnaire.</p>
+<a class="b-8 reference internal image-reference" href="../_images/stations_gps.png"><img alt="image" class="b-8 align-center" src="../_images/stations_gps.png" style="width: 360px;" /></a>
+<p>Chaque élément du dictionnaire est du type: ’nom de la station’ : (latitude, longitude)</p>
+<p>On <strong>admet</strong> que l’on dispose d’une fonction distance(p1, p2) permettant de renvoyer la distance en mètres entre
+deux positions données par leurs coordonnées GPS (latitude et longitude).</p>
+<p>Cette fonction prend en paramètre deux tuples représentant les coordonnées des deux positions GPS et renvoie un
+nombre entier représentant cette distance en mètres.</p>
+<p>Par exemple, distance((49.8905, 2.2967), (49.8912, 2.3016)) renvoie 9591.</p>
+<p><strong>Écrire</strong> une fonction qui prend en paramètre les coordonnées GPS de l’utilisateur sous forme d’un tuple et qui
+renvoie, pour chaque station située à moins de 800 mètres de l’utilisateur :</p>
+<ul class="simple">
+<li><p>le nom de la station ;</p></li>
+<li><p>la distance entre l’utilisateur et la station ;</p></li>
+<li><p>les identifiants des vélos disponibles dans cette station.</p></li>
+</ul>
+<p>Une station où aucun vélo n’est disponible ne doit pas être affichée.</p>
+</li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cours.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Le modèle relationnel</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice">Exercice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-1">Exercice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-2">Exercice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-3">Exercice</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Yannick Chistel
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023,Yannick Chistel.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
