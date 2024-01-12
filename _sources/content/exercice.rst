@@ -33,8 +33,7 @@ attribut indique qu’il s’agit d’une clef étrangère et la flèche associ�
 
    Cette insertion génère-t-elle une erreur ? Expliquer.
 
-#. Dans la définition de la relation Emprunts, qu’est-ce qui assure qu’on ne peut pas enregistre un emprunt pour un
-   élève qui n’a pas encore été inscrit dans la relation Eleves?
+#. Dans la définition de la relation Emprunts, qu’est-ce qui assure qu’on ne peut pas enregistrer un emprunt pour un élève qui n’a pas encore été inscrit dans la relation Eleves?
 
 .. _exercice-1:
 
