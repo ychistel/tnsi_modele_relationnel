@@ -6,8 +6,8 @@ Exercices sur le modèle relationnel
 .. toctree::
    :maxdepth: 1
 
-Exercice 
----------
+Exercice 1
+----------
 
 On considère dans cet exercice une gestion simplifiée des emprunts des ouvrages d’un CDI. La base de données utilisée
 est constituée de trois relations (ou tables) nommées Eleves, Livres et Emprunts selon le schéma relationnel suivant:
@@ -38,8 +38,8 @@ attribut indique qu’il s’agit d’une clef étrangère et la flèche associ�
 
 .. _exercice-1:
 
-Exercice 
----------
+Exercice 2
+----------
 
 On considère la table de données Films suivante :
 
@@ -60,8 +60,8 @@ On considère la table de données Films suivante :
 
 .. _exercice-2:
 
-Exercice 
----------
+Exercice 3
+----------
 
 On donne les extraits de trois relations d’une base de données:
 
@@ -100,8 +100,8 @@ On donne les extraits de trois relations d’une base de données:
 
 .. _exercice-3:
 
-Exercice 
----------
+Exercice 4
+----------
 
 Une ville souhaite gérer son parc de vélos en location partagée.
 L’ensemble de la flotte de vélos est stocké dans une table de données
